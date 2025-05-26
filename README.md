@@ -7,18 +7,99 @@ Diabetes affects a significant portion of the USA, with an estimated prevalence 
 * Then it feeds these parameters to a linear regression model that I built using historical diabetes data.
 * Finally showcases the result at the end.
 
-## How we built it
-* For the UI and the front-end, I used Streamlit, which is really easy to code in, and it allowed me to have enough time to improve the ML model.
-* I didn't want it to be a regular questionnaire, so when the user clicks next in one question, the next question appears at the bottom, and when this new question is selected, the previous question disappears. 
-* The training data for the model is taken from the following link: <https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data>
-which is a historical dataset related to diabetes in different parameters.
-* I used scikit-learn to train this model, and I actually tried to train 4 different models and compare their efficiencies: logistic-regression, random forest, gradient boosting, and SVM. However, SVM took too long to train, so I scraped it.
-* I also evaluated these models, so here are their ROC Curve values(1 = exact, 0.5 = same as randomly choosing):
-   - gradient-boosting: 0.82
-   - logistic-regression: 0.81
-   - random forest: 0.77
+## ⚙️ Tools & Stack
 
-* Despite the slightly better result of gradient-boosting, I chose logistic regression for the app because it is significantly faster.
+### 🀄 Language(s)
+- **Python**
+
+---
+
+### 💻 Frontend
+
+**🔨 Tools & Libraries:**  
+- [Streamlit]([https://streamlit.io/](https://diaguide.streamlit.app/))
+
+**❓ Why I chose it:**  
+I needed a simple library to create the layout — and I needed it fast 🏃‍♂️💨. As someone without much front-end experience, Streamlit helped me a lot. It’s beginner-friendly and has great documentation 📖 and tutorials. It was the perfect tool to create a data-heavy app with minimal UI design.
+
+**🛠️ How I used it:**  
+It was the cornerstone of my UI. Everything — from layout to interactivity — was built using 🐍 Python.  
+No HTML, no CSS — just clean Python code.
+
+---
+
+### 🤖 Machine Learning
+
+**🔨 Tools & Libraries:**  
+- `scikit-learn`
+
+**🔎 Model Type(s):**  
+- Logistic Regression  
+- Random Forest  
+- Gradient Boosting
+
+**🧹 Data Cleaning Libraries:**  
+- `pandas`  
+- `numpy`
+
+**💪 Performance / Evaluation:**  
+I trained 3 different models and evaluated them using ROC curves — this checks model performance on the test set, where:
+- `1.0 = perfect`
+- `0.5 = same as random guessing`
+
+| Model              | ROC Score | Speed / Notes                         |
+|--------------------|-----------|---------------------------------------|
+| Logistic Regression| **0.81**  | ⚡ Very fast                           |
+| Gradient Boosting  | 0.82      | ⏳ Okay speed                          |
+| Random Forest      | 0.77      | 🐢 Significantly slowed server response|
+
+**🏆 Result:**  
+I chose **Logistic Regression** — the small accuracy difference wasn’t worth the slower response time of Gradient Boosting or Random Forest.
+
+---
+
+### 📊 Dataset
+
+**🌐 Source:**  
+[Kaggle - Diabetes Health Indicators Dataset](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data)
+
+**🔢 Features Used:**  
+- BMI  
+- Age  
+- Blood Pressure  
+- (and more)
+
+**🤔 Why this dataset:**  
+✅ Clean  
+🏷️ Labeled  
+🧠 Interpretable  
+
+**📝 Additional Notes:**  
+I excluded two columns — **education level** and **income** — because they were more personal and only increased accuracy by ~1%, which wasn’t significant.
+
+---
+
+### 🌐 Hosting & Deployment
+
+**🚀 Where I deployed:**  
+- [Streamlit Cloud](https://streamlit.io/cloud)
+
+**🧑‍💻 GitHub Repository:**  
+- [`SuleymanSade/DiaGuide`](https://github.com/SuleymanSade/DiaGuide)
+
+**🌐 Live App:**  
+- [DiaGuide App](https://your-app-link.streamlit.app) <!-- Replace with your real URL if you want -->
+
+**🛠️ How I did it:**
+1. Listed all required libraries in `requirements.txt`
+2. Configured `git lfs` to handle large model files (>100MB)
+3. Created the GitHub repo and pushed the code
+4. Set up Streamlit Cloud for deployment
+
+**❓ Why I used Streamlit Cloud:**  
+It was free-to-use and super simple to set up. Plus, it syncs with GitHub — so any future code updates automatically refresh the app.
+
+
 
 ## Challenges we ran into
 * Initially, it was a struggle to figure out the system to show questions one by one, but then with the use of functions and custom keys, I was able to resolve the issue.
